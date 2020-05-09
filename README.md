@@ -9,7 +9,7 @@
 ## INSTALLATION
 
 ```cmd
-git submodule update --recursive --remove
+git submodule update --recursive --remote
 ```
 
 

@@ -1,0 +1,33 @@
+{
+	"ui": {
+		"com.magc.sensecane.controller.ProfileController": {
+			"implementation": "com.magc.sensecane.controller.ProfileControllerImpl",
+			"fxml": "fxml/profile/profile.fxml"
+		},
+		"com.magc.sensecane.controller.LoginController": {
+			"implementation": "com.magc.sensecane.controller.LoginControllerImpl",
+			"fxml": "fxml/login/login.fxml"
+		},
+		"com.magc.sensecane.controller.SensorController": {
+			"implementation": "com.magc.sensecane.controller.SensorControllerImpl",
+			"fxml": "fxml/sensor/sensor.fxml"
+		},
+		"com.magc.sensecane.controller.TicketController": {
+			"implementation": "com.magc.sensecane.controller.TicketControllerImpl",
+			"fxml": "fxml/ticket/ticket.fxml"
+		},
+		"com.magc.sensecane.controller.NetworkController": {
+			"implementation": "com.magc.sensecane.controller.NetworkControllerImpl",
+			"fxml": "fxml/network/network.fxml"
+		},
+		"com.magc.sensecane.controller.MainController": {
+			"implementation": "com.magc.sensecane.controller.MainControllerImpl",
+			"fxml": "fxml/main.fxml"
+		},
+		"com.magc.sensecane.controller.SidebarController": {
+			"implementation": "com.magc.sensecane.controller.SidebarControllerImpl",
+			"fxml": "fxml/sidebar.fxml"
+		}
+	},
+	"server": "http://192.168.0.155:80"
+}

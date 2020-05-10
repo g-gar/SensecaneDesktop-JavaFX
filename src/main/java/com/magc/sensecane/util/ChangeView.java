@@ -5,8 +5,6 @@ import com.magc.sensecane.framework.container.Container;
 import com.magc.sensecane.framework.javafx.controller.Controller;
 import com.magc.sensecane.framework.javafx.controller.ControllerContainer;
 
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ChangeView {
@@ -18,7 +16,7 @@ public class ChangeView {
 
 		try {
 			controller = container.get(ControllerContainer.class).get(c);
-			stage = Application.getInstance().stage;
+			stage = Application.stage;
 			
 			double w = stage.getWidth();
 			double h = stage.getHeight();

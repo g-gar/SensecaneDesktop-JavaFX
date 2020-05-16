@@ -4,34 +4,33 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="541.0" prefWidth="747.0" style="-fx-background-color: #3C3C3B;" type="javafx.scene.layout.HBox" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="541.0" prefWidth="747.0" style="-fx-background-color: #c6c6c6;" type="javafx.scene.layout.HBox" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-      <AnchorPane prefHeight="599.0" prefWidth="900.0">
+      <Pane>
          <children>
-				<Pane layoutY="450.0" prefHeight="119.0" prefWidth="620.0" style="-fx-background-color: #c6c6c6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="450.0">
-					<children>
-						<JFXButton fx:id="registerUser" layoutX="239.0" layoutY="47.0" prefHeight="25.0" prefWidth="233.0" style="-fx-background-color: #7f7777;" text="Registrar usuario" textFill="WHITE" />
-					</children>
-				</Pane>
-				<Pane layoutX="83.0" layoutY="14.0" prefHeight="140.0" prefWidth="582.0" style="-fx-background-color: #c6c6c6;" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="14.0">
-					<children>
-						<JFXTextField fx:id="userSelector" alignment="TOP_LEFT" focusColor="#c6c6c6" labelFloat="true" layoutX="86.0" layoutY="58.0" minHeight="-Infinity" onKeyReleased="#filterUsers" prefHeight="25.0" prefWidth="411.0" promptText="Buscar paciente o ayudante" style="-fx-background-color: #7f7777; -fx-text-inner-color: #d6d6d6; -fx-prompt-text-fill: #d6d6d6; -fx-background-radius: 5;" unFocusColor="#c6c6c6">
-							<font>
-								<Font size="13.0" />
-							</font>
-							<padding>
-								<Insets left="15.0" right="15.0" />
-							</padding>
-						</JFXTextField>
-					</children>
-				</Pane>
-				<JFXListView id="list" fx:id="listview" layoutX="96.0" layoutY="187.0" prefHeight="241.0" prefWidth="593.0" style="-fx-background-color: #9C9391;" stylesheets="@listView.css" />
+      				<Pane layoutX="-3.0" layoutY="422.0" prefHeight="119.0" prefWidth="750.0" style="-fx-background-color: #c6c6c6;">
+      					<children>
+      						<JFXButton fx:id="registerUser" layoutX="239.0" layoutY="47.0" prefHeight="25.0" prefWidth="233.0" style="-fx-background-color: #7f7777;" text="Registrar usuario" textFill="WHITE" />
+      					</children>
+      				</Pane>
+      				<Pane layoutX="-1.0" prefHeight="140.0" prefWidth="747.0" style="-fx-background-color: #c6c6c6;">
+      					<children>
+      						<JFXTextField fx:id="userSelector" alignment="TOP_LEFT" focusColor="#c6c6c6" labelFloat="true" layoutX="170.0" layoutY="58.0" minHeight="-Infinity" onKeyReleased="#filterUsers" prefHeight="25.0" prefWidth="411.0" promptText="Buscar paciente o ayudante" style="-fx-background-color: #7f7777; -fx-text-inner-color: #d6d6d6; -fx-prompt-text-fill: #d6d6d6;" unFocusColor="#c6c6c6">
+      							<font>
+      								<Font size="13.0" />
+      							</font>
+      							<padding>
+      								<Insets left="15.0" right="15.0" />
+      							</padding>
+      						</JFXTextField>
+      					</children>
+      				</Pane>
+      				<JFXListView id="list" fx:id="listview" layoutX="78.0" layoutY="161.0" prefHeight="241.0" prefWidth="593.0" style="-fx-background-color: #9C9391;" stylesheets="@listView.css" />
          </children>
-      </AnchorPane>
+      </Pane>
 	</children>
 </fx:root>

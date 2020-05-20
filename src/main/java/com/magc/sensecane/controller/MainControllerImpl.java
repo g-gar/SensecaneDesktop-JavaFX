@@ -84,7 +84,6 @@ public class MainControllerImpl extends AbstractController implements MainContro
 
 	private void load(Class c) {
 		Application app = Application.getInstance();
-		Stage stage = app.stage;
 		ControllerContainer container = app.get(ControllerContainer.class);
 		
 		Controller controller = container.get(c);

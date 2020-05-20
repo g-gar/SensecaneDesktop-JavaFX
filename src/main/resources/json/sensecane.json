@@ -29,5 +29,5 @@
 			"fxml": "fxml/sidebar.fxml"
 		}
 	},
-	"server": "http://192.168.0.155:80"
+	"server": "http://localhost:85"
 }

@@ -6,10 +6,10 @@ import com.jfoenix.controls.JFXComboBox;
 import com.magc.sensecane.Application;
 import com.magc.sensecane.Configuration;
 import com.magc.sensecane.component.ModifiableListCell;
-import com.magc.sensecane.component.ModifiableTextFieldListCell;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.Sensor;
 import com.magc.sensecane.model.domain.User;
+import com.magc.sensecane.service.SensorService;
 import com.magc.sensecane.service.UserService;
 
 import javafx.collections.FXCollections;
@@ -40,12 +40,16 @@ public class SensorControllerImpl extends AbstractController implements SensorCo
 			});
 		}));
 		
+		patients.valueProperty().addListener(user -> {
+			
+		});
+		
 		patients.setButtonCell(patients.getCellFactory().call(null));
 		
-		UserService.getUserList(users -> {
+		UserService.getUsers(users -> {
 			Application.getInstance().execute(() -> {
 				patients.setItems(FXCollections.observableArrayList(users));
-			}); 
+			});
 		});
 	}
 
@@ -53,8 +57,9 @@ public class SensorControllerImpl extends AbstractController implements SensorCo
 	@Override
 	public void selectSensors(ActionEvent event) {
 		System.out.println(event.getSource().getClass());
-		UserService.getSensors((User) Application.getInstance().get(Configuration.class).get("user"), sensors -> {
+		SensorService.getSensors((User) Application.getInstance().get(Configuration.class).get("user"), sensors -> {
 			Application.getInstance().execute(() -> {
+				System.out.println(sensors);
 //				patients
 			});
 		});

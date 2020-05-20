@@ -21,7 +21,7 @@ import com.magc.sensecane.util.HttpUtil;
 
 public class AuthService {
 
-	public static User authenticate(String username, String password, Consumer<User> onComplete) {
+	public static void authenticate(String username, String password, Consumer<User> onComplete) {
 		User result = null;
 		try {
 			Configuration conf = Application.getInstance().get(Configuration.class);
@@ -38,8 +38,7 @@ public class AuthService {
 					User result = null;
 					try {
 						String str = EntityUtils.toString(entity);
-						Type type = new TypeToken<User>() {
-						}.getType();
+						Type type = new TypeToken<User>() {}.getType();
 						result = new Gson().fromJson(str, type);
 					} catch (NullPointerException | ParseException | IOException e) {
 						e.printStackTrace();
@@ -51,7 +50,6 @@ public class AuthService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return result;
 	}
 }
 

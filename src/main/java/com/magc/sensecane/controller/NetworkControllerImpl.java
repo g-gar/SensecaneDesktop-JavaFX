@@ -3,15 +3,19 @@ package com.magc.sensecane.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXTextField;
 import com.magc.sensecane.Application;
+import com.magc.sensecane.Configuration;
 import com.magc.sensecane.component.ModifiableListCell;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.User;
+import com.magc.sensecane.service.ErrorService;
 import com.magc.sensecane.service.UserService;
+import com.magc.sensecane.util.ChangeView;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -24,7 +28,7 @@ public class NetworkControllerImpl extends AbstractController implements Network
 	@FXML
 	private ListView<User> listview;
 	@FXML
-	private JFXTextField userSelector;
+	private JFXTextField search;
 
 	public NetworkControllerImpl(URL fxml) {
 		super(fxml);
@@ -39,21 +43,32 @@ public class NetworkControllerImpl extends AbstractController implements Network
 				}
 			});
 		}));
-
-		UserService.getUserList((users) -> {
-			listview.getItems().clear();
-			listview.getItems().addAll(users);
+		
+		UserService.getUsers(users -> {
+			Application.getInstance().execute(() -> {
+				if (!users.isEmpty()) {
+					listview.getItems().clear();
+					listview.getItems().addAll(FXCollections.observableArrayList(users));
+				} else {
+					ErrorService.notifyError("No users available");
+				}
+			});
 		});
+	}
+	
+	@Override
+	public void destroy() {
+		listview.getItems().clear();
 	}
 
 	@FXML
 	@Override
 	public void filterUsers(KeyEvent event) {
-		final String text = userSelector.getText().trim().toLowerCase();
+		final String text = search.getText().trim().toLowerCase();
 		final List<Predicate<User>> predicates = new ArrayList<Predicate<User>>();
 
 		if (true) {
-			UserService.getUserList(users -> {
+			UserService.getUsers(users -> {
 				Application.getInstance().execute(() -> {
 					if (text.length() > 0) {
 						for (String part : text.split(" "))
@@ -71,10 +86,9 @@ public class NetworkControllerImpl extends AbstractController implements Network
 		}
 	}
 
-	@FXML
 	@Override
 	public void registerUser() {
-
+		
 	}
 
 }

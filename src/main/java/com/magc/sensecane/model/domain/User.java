@@ -6,17 +6,16 @@ public class User extends BaseEntity {
 
 	private final Integer id;
 	private final String username;
-	private final String password;
-	private final UserType type;
-	private final String apiToken;
+	private final String dni;
+	private final String firstName;
+	private final String lastName;
 	
-	public User(Integer id, String username, String password, UserType type, String apiToken) {
-		super();
+	public User(Integer id, String username, String dni, String firstName, String lastName) {
 		this.id = id;
 		this.username = username;
-		this.password = password;
-		this.type = type;
-		this.apiToken = apiToken;
+		this.dni = dni;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public Integer getId() {
@@ -27,16 +26,16 @@ public class User extends BaseEntity {
 		return username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getDni() {
+		return dni;
 	}
 
-	public UserType getType() {
-		return type;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public String getApiToken() {
-		return apiToken;
+	public String getLastName() {
+		return lastName;
 	}
 	
 }

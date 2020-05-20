@@ -1,21 +1,14 @@
 package com.magc.sensecane.controller;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.google.gson.Gson;
 import com.magc.sensecane.Application;
 import com.magc.sensecane.Configuration;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
-import com.magc.sensecane.framework.javafx.controller.Controller;
-import com.magc.sensecane.model.domain.User;
-import com.magc.sensecane.model.domain.UserType;
 import com.magc.sensecane.service.AuthService;
+import com.magc.sensecane.service.ErrorService;
 import com.magc.sensecane.util.ChangeView;
-import com.magc.sensecane.util.HttpUtil;
-import com.magc.sensecane.util.JsonUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -33,11 +26,11 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		username.setText("patient");
-		password.setText("patient");
+		username.setText("patient1");
+		password.setText("patient1");
 	}
 
-	@Override
+	@Override @FXML
 	public void login() {
 		try {
 			AuthService.authenticate(username.getText(), password.getText(), user -> {
@@ -46,6 +39,7 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 						Application.getInstance().get(Configuration.class).put("user", user);
 						ChangeView.execute(MainController.class);
 					} else {
+						ErrorService.notifyError("Invalid username or password");
 						password.setText("");
 					}
 				});

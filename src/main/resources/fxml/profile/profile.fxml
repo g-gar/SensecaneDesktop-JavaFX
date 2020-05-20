@@ -5,27 +5,37 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="420.0" prefWidth="267.0" stylesheets="@profile.css" type="javafx.scene.layout.HBox" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="420.0" prefWidth="267.0"
+	stylesheets="@profile.css" type="javafx.scene.layout.HBox"
+	HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<GridPane fx:id="gridd" maxHeight="Infinity" maxWidth="Infinity" styleClass="background" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+		<GridPane fx:id="gridd" maxHeight="Infinity"
+			maxWidth="Infinity" styleClass="background" GridPane.hgrow="ALWAYS"
+			GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES"
+					minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints />
 			</rowConstraints>
 			<children>
 				<VBox alignment="CENTER" GridPane.rowIndex="1">
@@ -35,14 +45,17 @@
 								<Font name="Century Gothic" size="12.0" />
 							</font>
 						</Label>
-                  <Label fx:id="name" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" text="Carlos" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
+						<Label fx:id="name" alignment="CENTER" maxWidth="100.0"
+							prefHeight="20.0" prefWidth="180.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							text="Carlos" textAlignment="CENTER" textFill="WHITE">
+							<font>
+								<Font name="Century Gothic" size="15.0" />
+							</font>
+							<VBox.margin>
+								<Insets top="5.0" />
+							</VBox.margin>
+						</Label>
 					</children>
 				</VBox>
 				<VBox alignment="CENTER" GridPane.rowIndex="2">
@@ -52,58 +65,57 @@
 								<Font name="Century Gothic" size="12.0" />
 							</font>
 						</Label>
-                  <Label fx:id="Lastname" alignment="CENTER" maxWidth="130.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" text="Vega González" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
+						<Label fx:id="Lastname" alignment="CENTER" maxWidth="130.0"
+							prefHeight="20.0" prefWidth="180.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							text="Vega González" textAlignment="CENTER" textFill="WHITE">
+							<font>
+								<Font name="Century Gothic" size="15.0" />
+							</font>
+							<VBox.margin>
+								<Insets top="5.0" />
+							</VBox.margin>
+						</Label>
 					</children>
 				</VBox>
-            <VBox alignment="CENTER" layoutX="10.0" layoutY="200.0" GridPane.rowIndex="3">
-               <children>
-                  <Label text="Rol:" textFill="#7f7777">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="rol" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" text="Medico" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="5.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" maxWidth="Infinity" prefHeight="20.0" prefWidth="180.0" GridPane.rowIndex="4">
-               <children>
-                  <JFXButton style="-fx-background-color: #7f7777;" text="Editar" textFill="#e7e3e3" />
-               </children>
-            </VBox>
-            <VBox prefHeight="84.0" prefWidth="217.0">
-               <children>
-                  <AnchorPane prefWidth="198.0">
-                     <VBox.margin>
-                        <Insets top="1.0" />
-                     </VBox.margin>
-                     <children>
-                        <Pane layoutX="81.0" prefHeight="80.0" prefWidth="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="2.0">
-                           <children>
-                              <ImageView disable="true" fitHeight="120.0" fitWidth="83.0" layoutX="9.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/medico.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </VBox>
+				<VBox alignment="CENTER" layoutX="10.0" layoutY="200.0"
+					GridPane.rowIndex="3">
+					<children>
+						<Label text="Rol:" textFill="#7f7777">
+							<font>
+								<Font name="Century Gothic" size="12.0" />
+							</font>
+						</Label>
+						<Label fx:id="rol" alignment="CENTER" maxWidth="100.0"
+							prefHeight="20.0" prefWidth="180.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							text="Medico" textAlignment="CENTER" textFill="WHITE">
+							<font>
+								<Font name="Century Gothic" size="15.0" />
+							</font>
+							<VBox.margin>
+								<Insets left="10.0" right="10.0" top="5.0" />
+							</VBox.margin>
+						</Label>
+					</children>
+				</VBox>
+				<VBox alignment="CENTER" maxWidth="Infinity" prefHeight="20.0"
+					prefWidth="180.0" GridPane.rowIndex="4">
+					<children>
+						<JFXButton style="-fx-background-color: #7f7777;"
+							text="Editar" textFill="#e7e3e3" />
+					</children>
+				</VBox>
+				<VBox alignment="CENTER" prefHeight="20.0" prefWidth="180.0">
+					<children>
+						<ImageView disable="true" fitHeight="120.0"
+							fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../../img/medico.png" />
+							</image>
+						</ImageView>
+					</children>
+				</VBox>
 			</children>
 		</GridPane>
 	</children>

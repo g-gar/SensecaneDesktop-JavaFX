@@ -12,6 +12,7 @@ import com.magc.sensecane.component.ModifiableListCell;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.User;
 import com.magc.sensecane.service.UserService;
+import com.magc.sensecane.util.ChangeView;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -71,10 +72,10 @@ public class NetworkControllerImpl extends AbstractController implements Network
 		}
 	}
 
-	@FXML
 	@Override
 	public void registerUser() {
-
+		// TODO Auto-generated method stub
+		
 	}
 
 }

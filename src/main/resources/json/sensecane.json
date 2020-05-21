@@ -15,7 +15,7 @@
 			},
 			"com.magc.sensecane.controller.TicketController": {
 				"implementation": "com.magc.sensecane.controller.TicketControllerImpl",
-				"fxml": "fxml/ticket/ticket.fxml"
+				"fxml": "fxml/ticket/pruebaticket.fxml"
 			},
 			"com.magc.sensecane.controller.NetworkController": {
 				"implementation": "com.magc.sensecane.controller.NetworkControllerImpl",

@@ -19,12 +19,12 @@
                <children>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="496.0" vbarPolicy="ALWAYS" vmin="1.0" vvalue="1.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c6c6c6;" stylesheets="@network/listView.css" />
+                        <ListView fx:id ="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c6c6c6;" stylesheets="@network/listView.css" />
                      </content>
                   </ScrollPane>
                   <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" VBox.vgrow="NEVER">
                      <children>
-                        <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#sendMethod" prefHeight="16.0" prefWidth="698.0" promptText="Enter Message..." scaleShape="false" HBox.hgrow="ALWAYS">
+                        <TextArea fx:id="messageBody" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#sendMethod" prefHeight="16.0" prefWidth="698.0" promptText="Enter Message..." scaleShape="false" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
@@ -38,7 +38,7 @@
          <left>
             <VBox maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
                <children>
-                  <ListView focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="621.0" prefWidth="217.0" style="-fx-border-image-width: 0;">
+                  <ListView fx:id="users" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="621.0" prefWidth="217.0" style="-fx-border-image-width: 0;">
             </ListView>
                </children>
             </VBox>

@@ -52,4 +52,7 @@ public class UserService {
 		}
 	}
 
+	public void getRelatedUsers(User user, Consumer<List<User>> consumer) {
+		UserService.getUsers(consumer);
+	}
 }

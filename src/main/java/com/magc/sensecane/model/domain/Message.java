@@ -2,7 +2,7 @@ package com.magc.sensecane.model.domain;
 
 import com.magc.sensecane.framework.model.BaseEntity;
 
-public class Ticket extends BaseEntity {
+public class Message extends BaseEntity {
 
 	private final Integer id;
 	private final User from;
@@ -10,7 +10,7 @@ public class Ticket extends BaseEntity {
 	private final String message;
 	private final Integer timestamp;
 	
-	public Ticket(Integer id, User from, User to, String message, Integer timestamp) {
+	public Message(Integer id, User from, User to, String message, Integer timestamp) {
 		super();
 		this.id = id;
 		this.from = from;

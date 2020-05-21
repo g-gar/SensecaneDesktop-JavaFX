@@ -11,11 +11,11 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.magc.sensecane.component.Builder;
+import com.magc.sensecane.component.BuilderContainer;
+import com.magc.sensecane.component.ComponentController;
 import com.magc.sensecane.framework.container.Container;
 import com.magc.sensecane.framework.container.DefaultContainer;
-import com.magc.sensecane.framework.database.connection.factory.ConnectionFactory;
-import com.magc.sensecane.framework.database.connection.pool.ConnectionPool;
-import com.magc.sensecane.framework.database.connection.properties.ConnectionProperties;
 import com.magc.sensecane.framework.javafx.controller.Controller;
 import com.magc.sensecane.framework.javafx.controller.ControllerContainer;
 import com.magc.sensecane.framework.utils.LoadResource;
@@ -39,19 +39,37 @@ public class ConfigurationJsonParser implements JsonDeserializer<Container>{
 		if (obj.has("ui")) {
 			JsonObject ui = obj.getAsJsonObject("ui");
 			ControllerContainer controllerContainer = container.register(ControllerContainer.class, new ControllerContainer());
+			BuilderContainer buildercontainer = container.register(BuilderContainer.class, new BuilderContainer());
 			
-			for (String key : ui.keySet()) {
-				try {
-					Class<Controller> controller = (Class<Controller>) Class.forName(key);
-					JsonObject temp = ui.getAsJsonObject(key);
-					if (temp.has("implementation") && temp.has("fxml")) {
-						URL url = container.get(LoadResource.class).execute(temp.get("fxml").getAsString()).toURL();
-						Class impl = Class.forName(temp.get("implementation").getAsString());
-						Constructor constructor = impl.getDeclaredConstructor(URL.class);
-						controllerContainer.put(controller, (Controller) constructor.newInstance(url));
+			if (ui.has("controller")) {
+				JsonObject ui_controller = ui.get("controller").getAsJsonObject();
+				for (String key : ui_controller.keySet()) {
+					try {
+						Class<Controller> controller = (Class<Controller>) Class.forName(key);
+						JsonObject temp = ui_controller.getAsJsonObject(key);
+						if (temp.has("implementation") && temp.has("fxml")) {
+							URL url = container.get(LoadResource.class).execute(temp.get("fxml").getAsString()).toURL();
+							Class impl = Class.forName(temp.get("implementation").getAsString());
+							Constructor constructor = impl.getDeclaredConstructor(URL.class);
+							controllerContainer.put(controller, (Controller) constructor.newInstance(url));
+						}
+					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | MalformedURLException e) {
+						e.printStackTrace();
 					}
-				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | MalformedURLException e) {
-					e.printStackTrace();
+				}
+			}
+			
+			if (ui.has("component")) {
+				JsonObject ui_component = ui.get("component").getAsJsonObject();
+				for (String key : ui_component.keySet()) {
+					try {
+						String fxml = ui_component.get(key).getAsString();
+						URL url = container.get(LoadResource.class).execute(fxml).toURI().toURL();
+						Class<ComponentController> c = (Class<ComponentController>) Class.forName(key);
+						buildercontainer.put(c, new Builder(c, url) {});
+					} catch (IllegalArgumentException | SecurityException | ClassNotFoundException | MalformedURLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

@@ -6,7 +6,9 @@ import java.io.FileReader;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
+import com.magc.sensecane.component.BuilderContainer;
 import com.magc.sensecane.controller.LoginController;
+import com.magc.sensecane.controller.component.MessageComponent;
 import com.magc.sensecane.framework.container.Container;
 import com.magc.sensecane.framework.javafx.JavaFxApplication;
 import com.magc.sensecane.framework.utils.LoadResource;
@@ -48,7 +50,11 @@ public class Application extends JavaFxApplication {
 		this.stage = primaryStage;
 		this.stage.getIcons().add(new Image("file:" + get(LoadResource.class).execute("img/Logo.png").toString()));
 		primaryStage.setTitle("MAGC - Sensecane");
-		ChangeView.execute(LoginController.class);
+//		ChangeView.execute(LoginController.class);
+		MessageComponent m = get(BuilderContainer.class).get(MessageComponent.class).build();
+		stage.setScene(m.get());
+		m.start("123788123", "user", "asnaklcsn");
+		stage.show();
 	}
 
 	public static void main(String[] args) {

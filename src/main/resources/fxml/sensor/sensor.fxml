@@ -41,10 +41,10 @@
             </HBox>
 				<LineChart fx:id="linechart" stylesheets="@sensor.css" HBox.hgrow="always" VBox.vgrow="always">
 					<xAxis>
-						<CategoryAxis side="BOTTOM" />
+						<NumberAxis fx:id="xAxis" side="BOTTOM" />
 					</xAxis>
 					<yAxis>
-						<NumberAxis side="LEFT" tickLabelFill="WHITE" />
+						<NumberAxis fx:id="yAxis" side="LEFT" tickLabelFill="WHITE" />
 					</yAxis>
 				</LineChart>
 			</children>

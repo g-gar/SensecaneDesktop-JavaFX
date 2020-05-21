@@ -4,27 +4,32 @@ import com.magc.sensecane.framework.model.BaseEntity;
 
 public class Measurement extends BaseEntity {
 
-	private final Sensor sensor;
-	private final Integer timestamp;
-	private final Double measurement;
+	private final Integer id;
+	private final Integer sensor;
+	private final Long timestamp;
+	private final Double value;
 	
-	public Measurement(Sensor sensor, Integer timestamp, Double measurement) {
-		super();
+	public Measurement(Integer id, Integer sensor, Long timestamp, Double value) {
+		this.id = id;
 		this.sensor = sensor;
 		this.timestamp = timestamp;
-		this.measurement = measurement;
+		this.value = value;
 	}
 
-	public Sensor getSensor() {
+	public Integer getId() {
+		return id;
+	}
+
+	public Integer getSensor() {
 		return sensor;
 	}
 
-	public Integer getTimestamp() {
+	public Long getTimestamp() {
 		return timestamp;
 	}
 
-	public Double getMeasurement() {
-		return measurement;
+	public Double getValue() {
+		return value;
 	}
 	
 }

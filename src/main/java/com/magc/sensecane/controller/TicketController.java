@@ -4,4 +4,6 @@ import com.magc.sensecane.framework.javafx.controller.Controller;
 
 public interface TicketController extends Controller {
    
+	void sendMethod();
+	
 }

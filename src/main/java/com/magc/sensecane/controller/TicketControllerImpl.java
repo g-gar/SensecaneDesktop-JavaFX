@@ -60,14 +60,10 @@ public class TicketControllerImpl extends AbstractController implements TicketCo
 		
 		users.getSelectionModel().selectedItemProperty().addListener((obs, old, user) -> {
 			User from = (User) Application.getInstance().get(Configuration.class).get("user");
-			System.out.println(from);
 			MessageService.getMessages(from, user, messages -> {
-				System.out.println(user);
 //				TicketControllerImpl.this.messages.getChildren().removeAll(TicketControllerImpl.this.messages.getChildren());
-				System.out.println("[MESSAGES]: " + messages);
 				messages.stream()
 					.filter(message -> message.getTo().equals(user.getId()))
-					.peek(System.out::println)
 					.forEach(e -> TicketControllerImpl.this.loadMessageComponent(e));
 			});
 		});

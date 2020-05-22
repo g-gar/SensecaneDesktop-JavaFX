@@ -37,7 +37,6 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 				Application.getInstance().execute(() -> {
 					if (user != null) {
 						Application.getInstance().get(Configuration.class).put("user", user);
-						System.out.println(user);
 						ChangeView.execute(MainController.class);
 					} else {
 						ErrorService.notifyError("Invalid username or password");

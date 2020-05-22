@@ -5,12 +5,12 @@ import com.magc.sensecane.framework.model.BaseEntity;
 public class Message extends BaseEntity {
 
 	private final Integer id;
-	private final User from;
-	private final User to;
+	private final Integer from;
+	private final Integer to;
 	private final String message;
-	private final Integer timestamp;
+	private final Long timestamp;
 	
-	public Message(Integer id, User from, User to, String message, Integer timestamp) {
+	public Message(Integer id, Integer from, Integer to, String message, Long timestamp) {
 		super();
 		this.id = id;
 		this.from = from;
@@ -23,11 +23,11 @@ public class Message extends BaseEntity {
 		return id;
 	}
 
-	public User getFrom() {
+	public Integer getFrom() {
 		return from;
 	}
 
-	public User getTo() {
+	public Integer getTo() {
 		return to;
 	}
 
@@ -35,7 +35,7 @@ public class Message extends BaseEntity {
 		return message;
 	}
 
-	public Integer getTimestamp() {
+	public Long getTimestamp() {
 		return timestamp;
 	}
 	

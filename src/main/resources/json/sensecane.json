@@ -34,5 +34,5 @@
 			"com.magc.sensecane.controller.component.MessageComponent": "fxml/ticket/TicketMessageComponent.fxml"
 		}
 	},
-	"server": "http://localhost:85"
+	"server": "http://127.0.0.1:85"
 }

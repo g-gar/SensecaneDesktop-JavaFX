@@ -12,3 +12,7 @@ buildNumber.properties
 
 out/
 target/
+
+.settings/
+.classpath
+.project

@@ -9,13 +9,15 @@ public class User extends BaseEntity {
 	private final String dni;
 	private final String firstName;
 	private final String lastName;
+	private final String type;
 	
-	public User(Integer id, String username, String dni, String firstName, String lastName) {
+	public User(Integer id, String username, String dni, String firstName, String lastName, String type) {
 		this.id = id;
 		this.username = username;
 		this.dni = dni;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.type = type;
 	}
 
 	public Integer getId() {
@@ -37,5 +39,8 @@ public class User extends BaseEntity {
 	public String getLastName() {
 		return lastName;
 	}
-	
+
+	public String getType() {
+		return type;
+	}
 }

@@ -1,14 +1,8 @@
 package com.magc.sensecane.component;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 
-import javafx.scene.Node;
+public class BuilderContainer extends HashMap<Class<? extends ComponentController>, Builder> {
 
-public class BuilderContainer extends ConcurrentHashMap<Class<? extends ComponentController>, Builder> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 }

@@ -5,21 +5,29 @@ import java.net.URL;
 public abstract class Builder {
 
 	protected final URL fxml;
-	protected final Class<? extends ComponentController> c;
+	protected final Class c;
 	
-	public Builder(Class<? extends ComponentController> c, URL fxml) {
+	public Builder(Class c, URL fxml) {
 		this.fxml = fxml;
 		this.c = c;
 	}
 	
-	public <T extends ComponentController> T build() {
+	public <T> T build() {
 		T controller = null;
 		try {
 			controller = (T) c.getDeclaredConstructor(URL.class).newInstance(this.fxml);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return controller;
 	}
+
+	public URL getFxml() {
+		return fxml;
+	}
+
+	public Class<? extends ComponentController> getC() {
+		return c;
+	}
+	
 }

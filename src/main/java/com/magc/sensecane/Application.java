@@ -50,11 +50,8 @@ public class Application extends JavaFxApplication {
 		this.stage = primaryStage;
 		this.stage.getIcons().add(new Image("file:" + get(LoadResource.class).execute("img/Logo.png").toString()));
 		primaryStage.setTitle("MAGC - Sensecane");
-//		ChangeView.execute(LoginController.class);
-		MessageComponent m = get(BuilderContainer.class).get(MessageComponent.class).build();
-		stage.setScene(m.get());
-		m.start("123788123", "user", "asnaklcsn");
-		stage.show();
+		ChangeView.execute(LoginController.class);
+		
 	}
 
 	public static void main(String[] args) {

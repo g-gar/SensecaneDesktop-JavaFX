@@ -23,8 +23,8 @@
 			<children>
             <HBox HBox.hgrow="always" VBox.vgrow="SOMETIMES">
                <children>
-                  <Label text="Paciente" textFill="BLACK" />
-                  <JFXComboBox fx:id="patients" onChange="#selectSensors" focusColor="#e7e3e3" prefWidth="84.0" unFocusColor="#e7e3e3" HBox.hgrow="always" />
+                  <Label fx:id="patientsLabel" text="Paciente" textFill="BLACK" />
+                  <JFXComboBox fx:id="patients" focusColor="#e7e3e3" prefWidth="84.0" unFocusColor="#e7e3e3" HBox.hgrow="always" />
                   <Label text="Sensor" textFill="BLACK">
                      <opaqueInsets>
                         <Insets left="30.0" />

@@ -6,15 +6,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<fx:root type="javafx.scene.layout.HBox" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-	<VBox HBox.hgrow="always" VBox.vgrow="always">
-		<HBox style="-fx-background-color: #c6c6c6;" HBox.hgrow="always" VBox.vgrow="always">
+<fx:root type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+	<VBox HBox.hgrow="always">
+		<HBox style="-fx-background-color: #c6c6c6;">
 			<children>
 				<JFXTextField fx:id="date" editable="false" focusColor="#c6c6c6" style="-fx-background-color: #7f7777;" unFocusColor="#c6c6c6" HBox.hgrow="always" />
 				<JFXTextField fx:id="from" editable="false" focusColor="#c6c6c6" style="-fx-background-color: #7f7777;" unFocusColor="#c6c6c6" HBox.hgrow="always" />
 			</children>
 		</HBox>
 		<Line stroke="WHITE" />
-		<JFXTextArea fx:id="body" editable="false" style="-fx-text-inner-color: #ffffff; -fx-background-color: #a8a8a8;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ullamcorper at mauris id semper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras id ex aliquam, viverra mauris vitae, sollicitudin massa. Fusce at ante vel massa ornare gravida id et erat." unFocusColor="#20120f" />
+		<JFXTextArea fx:id="body" editable="false" style="-fx-text-inner-color: #ffffff; -fx-background-color: #a8a8a8;" text="" unFocusColor="#20120f" />
 	</VBox>
 </fx:root>
+

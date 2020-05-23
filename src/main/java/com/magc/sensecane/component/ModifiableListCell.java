@@ -21,5 +21,6 @@ public class ModifiableListCell<T> extends ListCell<T> {
 	    } else if (this.fn != null) {
 			this.fn.accept(this, item);
 		}
+	    setWrapText(true);
 	}	
 }

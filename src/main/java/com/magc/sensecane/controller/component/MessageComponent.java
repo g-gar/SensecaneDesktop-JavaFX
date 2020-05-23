@@ -6,7 +6,10 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.magc.sensecane.component.ComponentController;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 
 public class MessageComponent extends ComponentController {
 	
@@ -20,9 +23,9 @@ public class MessageComponent extends ComponentController {
 
 	@Override
 	public void start(Object... params) {
-		date.setText(params[0].toString());
-		from.setText(params[1].toString());
-		body.setText(params[2].toString());
+//		date.setText(params[0].toString());
+//		from.setText(params[1].toString());
+//		body.setText(params[2].toString());
 	}
 
 	@Override
@@ -31,5 +34,4 @@ public class MessageComponent extends ComponentController {
 		from.setText("");
 		body.setText("");
 	}
-
 }

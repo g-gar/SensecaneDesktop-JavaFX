@@ -3,41 +3,40 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane maxHeight="620.0" maxWidth="1040.0" prefHeight="501.0" prefWidth="932.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
          <center>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" vbarPolicy="ALWAYS" vmin="1.0" vvalue="1.0" VBox.vgrow="ALWAYS">
-                     <content>
-                        <ListView fx:id="messages" focusTraversable="false" maxHeight="1.7976931348623157E308"></ListView>
-                     </content>
-                  </ScrollPane>
-                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" VBox.vgrow="NEVER">
+                  <VBox maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextArea fx:id="messageBody" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#sendMethod" prefHeight="16.0" prefWidth="698.0" promptText="Enter Message..." scaleShape="false" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="SansSerif Regular" size="14.0" />
-                           </font>
-                        </TextArea>
-                        <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="43.0" prefWidth="140.0" scaleShape="false" style="-fx-background-color: #7f7777;" text="Send" textAlignment="CENTER" textFill="#e7e3e3" HBox.hgrow="NEVER" />
+                        <ListView fx:id="messages" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <TextArea fx:id="messageBody" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="16.0" promptText="Enter Message..." scaleShape="false" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="14.0" />
+                                 </font>
+                              </TextArea>
+                              <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendMessage" prefHeight="43.0" prefWidth="140.0" scaleShape="false" style="-fx-background-color: #7f7777;" text="Send" textAlignment="CENTER" textFill="#e7e3e3" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
          </center>
          <left>
             <VBox fx:id="temp" maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="users" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="621.0" prefWidth="217.0" style="-fx-border-image-width: 0;">
+                  <ListView fx:id="users" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-image-width: 0;" VBox.vgrow="ALWAYS">
                   </ListView>
                </children>
             </VBox>

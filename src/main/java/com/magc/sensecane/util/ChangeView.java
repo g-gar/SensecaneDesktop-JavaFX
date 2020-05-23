@@ -15,7 +15,14 @@ public class ChangeView {
 		Stage stage = null;
 
 		try {
+			controller = container.get(ControllerContainer.class).current;
+			if (controller != null) {
+				System.out.println(String.format("[%s] destroy\n", controller.getClass()));
+				controller.destroy();
+			}
+			
 			controller = container.get(ControllerContainer.class).get(c);
+			container.get(ControllerContainer.class).current = controller;
 			stage = Application.stage;
 			
 			double w = stage.getWidth();

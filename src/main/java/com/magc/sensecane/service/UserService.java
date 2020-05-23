@@ -52,6 +52,32 @@ public class UserService {
 	}
 
 	public static void getRelatedUsers(User user, Consumer<List<User>> consumer) {
-		UserService.getUsers(consumer);
+		try {
+			Configuration conf = Application.getInstance().get(Configuration.class);
+
+			String url = String.format("%s/users/%s/related/", (String) conf.get("serverUrl"), user.getId());
+			HttpGet get = new HttpGet(url);
+			get.setHeader("accept", "application/json");
+
+			HttpAsyncMethodExecutor<List<User>> executor = new HttpAsyncMethodExecutor<List<User>>(consumer) {
+				@Override
+				public List<User> parseResponse(HttpEntity entity) {
+					List<User> result = null;
+					try {
+						String str = EntityUtils.toString(entity);
+						Type type = new TypeToken<Map<Object, User>>() {}.getType();
+						Map<Object, User> map = new Gson().fromJson(str, type);
+						result = new ArrayList<User>();
+						result.addAll(map.values());
+					} catch (NullPointerException | ParseException | IOException e) {
+						e.printStackTrace();
+					}
+					return result;
+				}
+			};
+			executor.fetch(get);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -25,20 +25,27 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		username.setText("patient1");
-		password.setText("patient1");
+	public void start() {
+//		username.setText("patient1");
+//		password.setText("patient1");
+	}
+	
+	@Override
+	public void destroy() {
+		password.setText("");
 	}
 
 	@Override @FXML
 	public void login() {
 		try {
 			AuthService.authenticate(username.getText(), password.getText(), user -> {
+				System.out.println(user);
 				Application.getInstance().execute(() -> {
 					if (user != null) {
 						Application.getInstance().get(Configuration.class).put("user", user);
 						ChangeView.execute(MainController.class);
 					} else {
+						System.out.println("error");
 						ErrorService.notifyError("Invalid username or password");
 						password.setText("");
 					}

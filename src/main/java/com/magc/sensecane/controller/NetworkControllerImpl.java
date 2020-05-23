@@ -44,7 +44,7 @@ public class NetworkControllerImpl extends AbstractController implements Network
 			});
 		}));
 		
-		UserService.getUsers(users -> {
+		UserService.getRelatedUsers((User) Application.getInstance().get(Configuration.class).get("user"), users -> {
 			Application.getInstance().execute(() -> {
 				if (!users.isEmpty()) {
 					listview.getItems().clear();

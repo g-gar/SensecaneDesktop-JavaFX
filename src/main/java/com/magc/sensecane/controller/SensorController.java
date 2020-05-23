@@ -6,6 +6,6 @@ import javafx.event.ActionEvent;
 
 public interface SensorController extends Controller {
 
-	void selectSensors(ActionEvent event);
+
 	
 }

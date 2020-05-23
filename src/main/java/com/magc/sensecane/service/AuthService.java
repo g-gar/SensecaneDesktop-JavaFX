@@ -22,7 +22,6 @@ import com.magc.sensecane.util.HttpUtil;
 public class AuthService {
 
 	public static void authenticate(String username, String password, Consumer<User> onComplete) {
-		User result = null;
 		try {
 			Configuration conf = Application.getInstance().get(Configuration.class);
 
@@ -30,7 +29,7 @@ public class AuthService {
 			HttpPost post = new HttpPost(url);
 			post.setHeader("Accept", "application/json");
 			post.setHeader("Content-Type", "application/json");
-			post.setEntity(new StringEntity(HttpUtil.jsonify( new UsernameAndPassword(username, password) )));
+			post.setEntity( new StringEntity(HttpUtil.jsonify( new UsernameAndPassword(username, password) )));
 			
 			HttpAsyncMethodExecutor<User> executor = new HttpAsyncMethodExecutor<User>(onComplete) {
 				@Override

@@ -20,6 +20,8 @@ public class MainControllerImpl extends AbstractController implements MainContro
 	@FXML private HBox left;
 	@FXML private HBox top;
 	@FXML private HBox container;
+	
+	private Controller current;
 
 	public MainControllerImpl(URL fxml) {
 		super(fxml);
@@ -88,6 +90,12 @@ public class MainControllerImpl extends AbstractController implements MainContro
 		
 		Controller controller = container.get(c);
 		app.execute(() -> {
+			if (current != null) {
+				System.out.print(String.format("[%s] destroy\n", current.getClass()));
+				current.destroy();
+			}
+			current = controller;
+			
 			BorderPane pane = (BorderPane) MainControllerImpl.this.lookup("BorderPane");
 			pane.setCenter((Node) controller);
 			Application.getInstance().get(ControllerContainer.class).get(c).start();
@@ -97,6 +105,7 @@ public class MainControllerImpl extends AbstractController implements MainContro
 	@Override
 	public void logout() {
 		try {
+			this.destroy();
 			ChangeView.execute(LoginController.class);
 		} catch (Exception e) {
 			e.printStackTrace();

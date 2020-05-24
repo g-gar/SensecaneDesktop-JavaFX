@@ -1,7 +1,6 @@
 package com.magc.sensecane.controller;
 
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.magc.sensecane.Application;
@@ -10,17 +9,15 @@ import com.magc.sensecane.component.ModifiableListCell;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.Message;
 import com.magc.sensecane.model.domain.User;
+import com.magc.sensecane.service.LoggerService;
 import com.magc.sensecane.service.MessageService;
 import com.magc.sensecane.service.UserService;
+import com.magc.sensecane.util.NumberUtils;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableNumberValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 
 public class TicketControllerImpl extends AbstractController implements TicketController {
@@ -74,6 +71,7 @@ public class TicketControllerImpl extends AbstractController implements TicketCo
 				Application.getInstance().execute(() -> {
 					TicketControllerImpl.this.showMessages(messages.stream()
 							.filter( message -> message.getTo().equals(user.getId()) || message.getTo().equals(from.getId()))
+							.sorted((a,b) -> NumberUtils.compare(a.getTimestamp(), b.getTimestamp()))
 							.collect(Collectors.toList())
 							.toArray(new Message[] {}));
 				});
@@ -94,7 +92,18 @@ public class TicketControllerImpl extends AbstractController implements TicketCo
 
 	@Override
 	public void sendMessage() {
-		System.out.println(messageBody.getText());
+		Application app = Application.getInstance();
+		User from = (User) app.get(Configuration.class).get("user");
+		User to = users.getSelectionModel().getSelectedItem();
+		MessageService.sendMessage(from, to, messageBody.getText(), message -> {
+			app.execute(() -> {
+				messages.getItems().add(message);
+				messageBody.setText("");
+			});
+		}, () -> {
+			messageBody.setText("");
+			LoggerService.notifyError("Error sending message");
+		});
 	}
 
 	@Override

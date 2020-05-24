@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="541.0" prefWidth="747.0"
+	style="-fx-background-color: #c6c6c6;" type="javafx.scene.layout.HBox"
+	HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<GridPane alignment="CENTER">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES"
+					minWidth="10.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="516.0" minHeight="10.0"
+					prefHeight="110.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="423.0" minHeight="10.0"
+					prefHeight="328.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="283.0" minHeight="10.0"
+					prefHeight="103.0" vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<VBox alignment="CENTER" GridPane.rowIndex="2">
+					<children>
+						<JFXButton fx:id="registerUser" prefHeight="25.0"
+							prefWidth="233.0" style="-fx-background-color: #7f7777;"
+							text="Registrar usuario" textFill="WHITE" />
+					</children>
+				</VBox>
+				<VBox alignment="CENTER">
+					<children>
+						<JFXTextField fx:id="search" alignment="TOP_LEFT"
+							focusColor="#c6c6c6" labelFloat="true" maxWidth="300.0"
+							onKeyReleased="#filterUsers" prefHeight="20.0" prefWidth="200.0"
+							promptText="Buscar paciente o ayudante"
+							style="-fx-background-color: #7f7777; -fx-text-inner-color: #d6d6d6; -fx-prompt-text-fill: #d6d6d6;"
+							unFocusColor="#c6c6c6">
+							<font>
+								<Font size="13.0" />
+							</font>
+							<VBox.margin>
+								<Insets left="15.0" right="15.0" />
+							</VBox.margin>
+						</JFXTextField>
+					</children>
+				</VBox>
+				<VBox alignment="CENTER" GridPane.rowIndex="1">
+					<children>
+						<Pane VBox.vgrow="SOMETIMES">
+							<children>
+								<JFXListView id="list" fx:id="listview"
+									layoutX="14.0" layoutY="20.0" prefHeight="277.0"
+									prefWidth="716.0" style="-fx-background-color: #9C9391;"
+									stylesheets="@listView.css" />
+							</children>
+						</Pane>
+					</children>
+				</VBox>
+			</children>
+		</GridPane>
+	</children>
+</fx:root>

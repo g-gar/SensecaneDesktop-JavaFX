@@ -1,13 +1,13 @@
 package com.magc.sensecane.controller;
 
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import com.magc.sensecane.Application;
 import com.magc.sensecane.Configuration;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
+import com.magc.sensecane.model.domain.User;
 import com.magc.sensecane.service.AuthService;
-import com.magc.sensecane.service.ErrorService;
 import com.magc.sensecane.util.ChangeView;
 
 import javafx.fxml.FXML;
@@ -26,8 +26,8 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 
 	@Override
 	public void start() {
-//		username.setText("patient1");
-//		password.setText("patient1");
+		username.setText("patient1");
+		password.setText("patient1");
 	}
 	
 	@Override
@@ -37,24 +37,21 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 
 	@Override @FXML
 	public void login() {
-		try {
-			AuthService.authenticate(username.getText(), password.getText(), user -> {
-				System.out.println(user);
-				Application.getInstance().execute(() -> {
-					if (user != null) {
-						Application.getInstance().get(Configuration.class).put("user", user);
-						ChangeView.execute(MainController.class);
-					} else {
-						System.out.println("error");
-						ErrorService.notifyError("Invalid username or password");
-						password.setText("");
-					}
-				});
+		Consumer<User> onComplete = user -> {
+			System.out.println(user);
+			Application.getInstance().execute(() -> {
+				if (user != null) {
+					Application.getInstance().get(Configuration.class).put("user", user);
+					ChangeView.execute(MainController.class);
+				}
 			});
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		};
+		Runnable onError = () -> {
+			Application.getInstance().execute(() -> {
+				password.setText("");
+			});
+		};
+		AuthService.authenticate(username.getText(), password.getText(), onComplete, onError);
 	}
 
 	@Override

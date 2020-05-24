@@ -9,7 +9,7 @@ import com.magc.sensecane.component.ModifiableListCell;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.Sensor;
 import com.magc.sensecane.model.domain.User;
-import com.magc.sensecane.service.ErrorService;
+import com.magc.sensecane.service.LoggerService;
 import com.magc.sensecane.service.SensorService;
 import com.magc.sensecane.service.UserService;
 import com.magc.sensecane.util.JavaFXChartUtils;
@@ -79,7 +79,7 @@ public class SensorControllerImpl extends AbstractController implements SensorCo
 						});
 					});
 				} else {
-					ErrorService.notifyError("No sensor provided");
+					LoggerService.notifyError("No sensor provided");
 				}
 			}
 		});
@@ -127,7 +127,7 @@ public class SensorControllerImpl extends AbstractController implements SensorCo
 			case "carer":
 				break;
 			default:
-				ErrorService.notifyError(String.format("User type [%s] is not supported", user.getType()));
+				LoggerService.notifyError(String.format("User type [%s] is not supported", user.getType()));
 		}
 	}
 }

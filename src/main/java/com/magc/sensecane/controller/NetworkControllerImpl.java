@@ -13,7 +13,7 @@ import com.magc.sensecane.Configuration;
 import com.magc.sensecane.component.ModifiableListCell;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.User;
-import com.magc.sensecane.service.ErrorService;
+import com.magc.sensecane.service.LoggerService;
 import com.magc.sensecane.service.UserService;
 import com.magc.sensecane.util.ChangeView;
 
@@ -50,7 +50,7 @@ public class NetworkControllerImpl extends AbstractController implements Network
 					listview.getItems().clear();
 					listview.getItems().addAll(FXCollections.observableArrayList(users));
 				} else {
-					ErrorService.notifyError("No users available");
+					LoggerService.notifyError("No users available");
 				}
 			});
 		});

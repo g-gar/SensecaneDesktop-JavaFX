@@ -1,82 +1,85 @@
 package com.magc.sensecane.service;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.ParseException;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.entity.StringEntity;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.magc.sensecane.framework.http.HttpAsyncMethodExecutor;
 
 public class HttpService {
-
-	public static class GET {
+	
+	public static abstract class Method<T extends HttpRequestBase> {
+		protected final List<Header> headers = new ArrayList<Header>();
 		
-		public static <T> HttpGet build(String url, Header...headers) {
-//			Configuration conf = Application.getInstance().get(Configuration.class);
+		public <H extends Header> Method<T> addHeader(H header) {
+			this.headers.add(header);
+			return this;
+		}
+		
+		public abstract T build(String url);
+		public <R> T build(String url, R body) {
+			return null;
+		}
+	}
+
+	public static class GET extends Method<HttpGet> {
+
+		@Override
+		public HttpGet build(String url) {
 			HttpGet get = new HttpGet(url);
-			Arrays.asList(headers).forEach(header->get.setHeader(header));
+			headers.forEach(header -> get.setHeader(header));
 			return get;
 		}
+
+	}
+
+	public static class POST extends Method<HttpPost> {
+
+		@Override
+		public HttpPost build(String url) {
+			return this.build(url, new String());
+		}
 		
+		@Override
+		public <R> HttpPost build(String url, R body) {
+			HttpPost post = new HttpPost(url);
+			headers.forEach(header -> post.setHeader(header));
+			try {
+				post.setEntity(new StringEntity(body.toString()));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			return post;
+		}
 	}
-	
-	public static <T> void request(HttpRequestBase http, Consumer<T> consumer) {
+
+	public static <R, T extends HttpAsyncMethodExecutor<R>> void request(HttpRequestBase http, Class<T> executorClass, BiConsumer<T, HttpResponse> onComplete) {
 		try {
-			HttpAsyncMethodExecutor<T> executor = new HttpAsyncMethodExecutor<T>(consumer) {
-				@Override
-				public T parseResponse(HttpEntity entity) {
-					T result = null;
-					try {
-						String str = EntityUtils.toString(entity);
-						Type type = new TypeToken<T>() {}.getType();
-						result = new Gson().fromJson(str, type);
-					} catch (NullPointerException | ParseException | IOException e) {
-						e.printStackTrace();
-					}
-					return result;
-				}
-			};
-			executor.fetch(http);
-		} catch (IOException e) {
+			executorClass.newInstance().fetch(http, (T executor, HttpResponse response) -> {
+				onComplete.accept(executor, response);
+			});
+		} catch (IOException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static <T> void requestList(HttpRequestBase http, TypeToken<Map<Object, T>> type, Consumer<List<T>> consumer) {
+
+	public static <T, R extends HttpAsyncMethodExecutor<T>> void request(HttpRequestBase http, Class<R> executor, BiConsumer<R, HttpResponse> onComplete, BiConsumer<R, Exception> onError) {
 		try {
-			HttpAsyncMethodExecutor<List<T>> executor = new HttpAsyncMethodExecutor<List<T>>(consumer) {
-				@Override
-				public List<T> parseResponse(HttpEntity entity) {
-					List<T> result = null;
-					try {
-						String str = EntityUtils.toString(entity);
-//						Type type = new TypeToken<Map<Object, T>>() {}.getType();
-						Map<Object, T> map = new Gson().fromJson(str, type.getType());
-						System.out.println(map);
-						result = new ArrayList<T>();
-						result.addAll(map.values());
-						System.out.println(result);
-					} catch (NullPointerException | ParseException | IOException e) {
-						e.printStackTrace();
-					}
-					return result;
-				}
-			};
-			executor.fetch(http);
-		} catch (IOException e) {
+			HttpAsyncMethodExecutor<T> exec = executor.newInstance();
+			exec.fetch(http, onComplete, onError);
+		} catch (IOException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
+
 }

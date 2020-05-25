@@ -26,8 +26,8 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 
 	@Override
 	public void start() {
-		username.setText("patient1");
-		password.setText("patient1");
+		username.setText("paciente1");
+		password.setText("paciente1");
 	}
 	
 	@Override
@@ -38,7 +38,6 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 	@Override @FXML
 	public void login() {
 		Consumer<User> onComplete = user -> {
-			System.out.println(user);
 			Application.getInstance().execute(() -> {
 				if (user != null) {
 					Application.getInstance().get(Configuration.class).put("user", user);

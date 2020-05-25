@@ -49,6 +49,7 @@ public class Application extends JavaFxApplication {
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 		this.stage.getIcons().add(new Image("file:" + get(LoadResource.class).execute("img/Logo.png").toString()));
+		stage.setMaximized(true);
 		primaryStage.setTitle("MAGC - Sensecane");
 		ChangeView.execute(LoginController.class);
 		

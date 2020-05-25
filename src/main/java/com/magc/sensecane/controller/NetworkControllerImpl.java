@@ -3,32 +3,35 @@ package com.magc.sensecane.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXTextField;
 import com.magc.sensecane.Application;
 import com.magc.sensecane.Configuration;
-import com.magc.sensecane.component.ModifiableListCell;
+import com.magc.sensecane.component.ModifiableTableRow;
 import com.magc.sensecane.framework.javafx.controller.AbstractController;
 import com.magc.sensecane.model.domain.User;
 import com.magc.sensecane.service.LoggerService;
 import com.magc.sensecane.service.UserService;
-import com.magc.sensecane.util.ChangeView;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
 
 public class NetworkControllerImpl extends AbstractController implements NetworkController {
 
-	@FXML
-	private ListView<User> listview;
-	@FXML
-	private JFXTextField search;
+	@FXML private TableView<User> table;
+	@FXML private JFXTextField search;
 
 	public NetworkControllerImpl(URL fxml) {
 		super(fxml);
@@ -36,19 +39,60 @@ public class NetworkControllerImpl extends AbstractController implements Network
 
 	@Override
 	public void start() {
-		listview.setCellFactory(callback -> new ModifiableListCell<User>((ListCell<User> cell, User user) -> {
+//		table.setCellFactory(cell -> new ModifiableTableCell<User>((TableCell<User> cell, User user) -> {
+//			Application.getInstance().execute(() -> {
+//				if (user != null) {
+//					cell.setText(user.getUsername());
+//				}
+//			});
+//		}));
+		
+		table.setRowFactory(table -> new ModifiableTableRow<User>((TableRow<User> row, User user) -> {
 			Application.getInstance().execute(() -> {
-				if (user != null) {
-					cell.setText(user.getUsername());
-				}
+				System.out.println(user);
 			});
 		}));
+		
+		table.getColumns()
+			.stream()
+			.map(col -> (TableColumn<User, String>) col)
+			.forEach(column -> {
+				Callback<CellDataFeatures<User, String>, ObservableValue<String>> callback = null;
+				switch (column.getId()) {
+					case "username":
+						callback = new PropertyValueFactory("username");
+						break;
+					case "firstName":
+						callback = new PropertyValueFactory("firstName");
+						break;
+					case "lastName":
+						callback = new PropertyValueFactory("lastName");
+						break;
+					case "dni":
+						callback = new PropertyValueFactory("dni");
+						break;
+					case "type":
+						callback = new PropertyValueFactory("type");
+						break;
+				}
+				column.setCellValueFactory(callback);
+				column.prefWidthProperty().bind(table.widthProperty().divide(table.getColumns().size()));
+				column.setCellFactory(tablecolumn -> {
+					TableCell<User, String> cell = TextFieldTableCell.<User>forTableColumn().call(tablecolumn);
+					cell.itemProperty().addListener((obs, old, str) -> {
+						if (cell.getTableRow() == null) cell.setEditable(false);
+						else if (cell.getTableRow().getItem() == null) cell.setEditable(false);
+						else cell.setEditable(true);
+					});
+					return cell;
+				});
+			});
 		
 		UserService.getRelatedUsers((User) Application.getInstance().get(Configuration.class).get("user"), users -> {
 			Application.getInstance().execute(() -> {
 				if (!users.isEmpty()) {
-					listview.getItems().clear();
-					listview.getItems().addAll(FXCollections.observableArrayList(users));
+					table.getItems().clear();
+					table.getItems().addAll(FXCollections.observableArrayList(users));
 				} else {
 					LoggerService.notifyError("No users available");
 				}
@@ -58,28 +102,28 @@ public class NetworkControllerImpl extends AbstractController implements Network
 	
 	@Override
 	public void destroy() {
-		listview.getItems().clear();
+		table.getItems().clear();
 	}
 
 	@FXML
 	@Override
-	public void filterUsers(KeyEvent event) {
+	public void filterUsers() {
 		final String text = search.getText().trim().toLowerCase();
 		final List<Predicate<User>> predicates = new ArrayList<Predicate<User>>();
 
 		if (true) {
-			UserService.getUsers(users -> {
+			UserService.getRelatedUsers((User) Application.getInstance().get(Configuration.class).get("user"), users -> {
 				Application.getInstance().execute(() -> {
 					if (text.length() > 0) {
 						for (String part : text.split(" "))
 							predicates.add(user -> user.getUsername().contains(part));
 
-						listview.setItems(FXCollections.observableArrayList(users.stream()
+						table.setItems(FXCollections.observableArrayList(users.stream()
 							.filter(user -> predicates.stream().map(e -> e.test(user)).reduce((a, b) -> a && b).get())
 							.collect(Collectors.toList()))
 						);
 					} else {
-						listview.setItems(FXCollections.observableArrayList(users));
+						table.setItems(FXCollections.observableArrayList(users));
 					}
 				});
 			});

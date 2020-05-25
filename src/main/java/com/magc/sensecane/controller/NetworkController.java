@@ -5,6 +5,6 @@ import javafx.scene.input.KeyEvent;
 public interface NetworkController {
 
 	public void registerUser();
-	public void filterUsers(KeyEvent event);
+	public void filterUsers();
 	
 }

@@ -66,23 +66,28 @@ public class TicketControllerImpl extends AbstractController implements TicketCo
 
 		users.getSelectionModel().selectedItemProperty().addListener((obs, old, user) -> {
 			User from = (User) Application.getInstance().get(Configuration.class).get("user");
-			MessageService.getMessages(from, user, messages -> {
-				TicketControllerImpl.this.messages.getItems().clear();
-				Application.getInstance().execute(() -> {
-					TicketControllerImpl.this.showMessages(messages.stream()
+			if (user != null) {
+				MessageService.getMessages(from, user, messages -> {
+					TicketControllerImpl.this.messages.getItems().clear();
+					Application.getInstance().execute(() -> {
+						TicketControllerImpl.this.showMessages(messages.stream()
 							.filter( message -> message.getTo().equals(user.getId()) || message.getTo().equals(from.getId()))
 							.sorted((a,b) -> NumberUtils.compare(a.getTimestamp(), b.getTimestamp()))
 							.collect(Collectors.toList())
 							.toArray(new Message[] {}));
+					});
 				});
-			});
+			}
 		});
 	}
 
 	@Override
 	public void destroy() {
-		users.getItems().clear();
 		messages.getItems().clear();
+		users.getItems().clear();
+		
+		messages.getSelectionModel().clearSelection();
+		users.getSelectionModel().clearSelection();
 	}
 
 	public void loadMessage(Message message) {

@@ -3,45 +3,90 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="839.0" style="-fx-background-color: #c6c6c6;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #c6c6c6;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-      <VBox>
+      <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
          <children>
-            <Pane prefHeight="593.0" prefWidth="1027.0">
+            <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #BDBDBD;" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="50.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" percentHeight="60.0" valignment="CENTER" vgrow="ALWAYS" />
+              </rowConstraints>
                <children>
-                  <Pane layoutX="21.0" layoutY="90.0">
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <children>
-            						<Label layoutX="77.0" layoutY="33.0" prefHeight="54.0" prefWidth="211.0" text="SENSECANE" textFill="#615e5e">
-            							<font>
-            								<Font size="37.0" />
-            							</font>
-            						</Label>
-            						<ImageView fitHeight="117.0" fitWidth="135.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-            							<image>
-            								<Image url="@../../img/Logo.png" />
-            							</image>
-            						</ImageView>
-            						<Label layoutX="39.0" layoutY="108.0" prefHeight="66.0" prefWidth="287.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing &#10;elit. Vestibulum vitae vulputate nulla. Nulla ut lacus &#10;in leo feugiat ultricies. Aenean posuere, dui in" textAlignment="CENTER" textFill="#686262" />
+                        <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
+                           <children>
+                  						<Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="SENSECANE" textFill="#615e5e" HBox.hgrow="ALWAYS">
+                  							<font>
+                  								<Font size="37.0" />
+                  							</font>
+                  						</Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
+                           <children>
+                  						<Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Lorem ipsum dolor sit amet, consectetur adipiscing &#10;elit. Vestibulum vitae vulputate nulla. Nulla ut lacus &#10;in leo feugiat ultricies. Aenean posuere, dui in" textAlignment="CENTER" textFill="#686262" textOverrun="CLIP" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
+                           <children>
+                  						<ImageView fitHeight="102.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                  							<image>
+                  								<Image url="@../../img/Logo.png" />
+                  							</image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                  						</ImageView>
+                           </children>
+                        </HBox>
                      </children>
-                  </Pane>
-                  <Pane layoutX="493.0" layoutY="125.0" prefHeight="284.0" prefWidth="276.0" style="-fx-background-color: #13304f;">
+                  </VBox>
+                  <HBox GridPane.columnIndex="1">
                      <children>
-            						<JFXTextField fx:id="username" focusColor="WHITE" layoutX="31.0" layoutY="57.0" prefHeight="25.0" prefWidth="219.0" promptText="Usuario" style="-fx-background-color: #13304f;" styleClass="jfx-text-field" stylesheets="@login.css" unFocusColor="#e7e3e3" />
-            						<JFXPasswordField fx:id="password" focusColor="WHITE" layoutX="27.0" layoutY="123.0" prefHeight="25.0" prefWidth="219.0" promptText="Contraseña" style="-fx-background-color: #13304f;" styleClass="jfx-password-field" stylesheets="@login.css" unFocusColor="#e7e3e3" />
-            						<JFXButton layoutX="31.0" layoutY="196.0" onAction="#login" prefHeight="25.0" prefWidth="219.0" style="-fx-background-color: #7f7777;" text="Entrar" textFill="#e7e3e3" />
-            						<JFXButton layoutX="83.0" layoutY="244.0" onAction="#exit" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #7f7777;" text="Salir" textFill="#e7e3e3" />
+                        <GridPane alignment="CENTER" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints percentHeight="50.0" valignment="CENTER" />
+                          </rowConstraints>
+                           <children>
+                              <VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #13304f;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+                                 <children>
+                        						<JFXTextField fx:id="username" alignment="CENTER" focusColor="#0a0a0a" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Usuario" style="-fx-background-color: #13304f;" styleClass="jfx-text-field" stylesheets="@login.css" unFocusColor="#e7e3e3" VBox.vgrow="SOMETIMES" />
+                        						<JFXPasswordField fx:id="password" alignment="CENTER" focusColor="BLACK" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Contraseña" style="-fx-background-color: #13304f;" styleClass="jfx-password-field" stylesheets="@login.css" unFocusColor="#e7e3e3" VBox.vgrow="SOMETIMES" />
+                                    <HBox maxWidth="1.7976931348623157E308">
+                                       <children>
+                              						<JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#login" style="-fx-background-color: #7f7777;" text="Entrar" textFill="#e7e3e3" HBox.hgrow="ALWAYS" />
+                              						<JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#exit" style="-fx-background-color: #7f7777;" text="Salir" textFill="#e7e3e3" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
                      </children>
-                  </Pane>
+                  </HBox>
                </children>
-            </Pane>
+            </GridPane>
          </children>
       </VBox>
 	</children>

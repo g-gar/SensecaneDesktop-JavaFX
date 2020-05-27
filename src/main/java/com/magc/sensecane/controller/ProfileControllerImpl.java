@@ -17,7 +17,8 @@ public class ProfileControllerImpl extends AbstractController implements Profile
 	@FXML private Label firstName;
 	@FXML private Label lastName;
 	@FXML private Label dni;
-	@FXML private Label role;
+	@FXML private Label token;
+	@FXML private Label type;
 	
 	public ProfileControllerImpl(URL fxml) {
 		super(fxml);
@@ -29,12 +30,13 @@ public class ProfileControllerImpl extends AbstractController implements Profile
 		firstName.setText(user.getFirstName());
 		lastName.setText(user.getLastName());
 		dni.setText(user.getDni());
-		role.setText("TO IMPLEMENT");
+		token.setText(user.getToken());
+		type.setText(user.getType());
 	}
 	
 	@Override
 	public void destroy() {
-		List<Label> labels = Arrays.asList(new Label[] {firstName, lastName, dni, role});
+		List<Label> labels = Arrays.asList(new Label[] {firstName, lastName, dni, type});
 		labels.forEach(e -> e.setText(""));
 	}
 }

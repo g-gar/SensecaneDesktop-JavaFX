@@ -26,8 +26,8 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 
 	@Override
 	public void start() {
-		username.setText("paciente1");
-		password.setText("paciente1");
+		username.setText("patient1");
+		password.setText("patient1");
 	}
 	
 	@Override
@@ -38,6 +38,7 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 	@Override @FXML
 	public void login() {
 		Consumer<User> onComplete = user -> {
+			System.out.println(user);
 			Application.getInstance().execute(() -> {
 				if (user != null) {
 					Application.getInstance().get(Configuration.class).put("user", user);
@@ -51,6 +52,19 @@ public class LoginControllerImpl extends AbstractController implements LoginCont
 			});
 		};
 		AuthService.authenticate(username.getText(), password.getText(), onComplete, onError);
+		
+//		Application.getInstance().get(Configuration.class).put("user", new User(1, "admin", "2342352341532", "admin", "admin", "doctor", "324123513451324n"));
+//		String[] types = new String[] {"patient", "carer", "doctor"};
+//		for (int i = 0; i < 200000000; i++) {
+//			int rand = new Random().nextInt(types.length - 1 + 1);
+//			String type = types[rand];
+//			String dni = NifUtil.generaNif();
+//			
+//			while (dni == null) { dni = NifUtil.generaNif();}
+//			
+//			User usr = new User(null, type+i, dni, type, ""+i, type);
+//			UserService.createUser(usr, type+i, u -> {}, () -> {});
+//		}
 	}
 
 	@Override

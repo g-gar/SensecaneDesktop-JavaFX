@@ -17,6 +17,7 @@ public class AuthService {
 
 	public static void authenticate(String username, String password, Consumer<User> completed, Runnable error) {
 		Configuration conf = Application.getInstance().get(Configuration.class);
+		User user = (User) conf.get("user");
 		String u = username, p = password;
 		Object ua = new Object() {
 			String username = u;

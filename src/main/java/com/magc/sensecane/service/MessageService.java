@@ -20,6 +20,7 @@ import com.magc.sensecane.model.httpexecutor.MessagesHttpAsyncMethodExecutor;
 public class MessageService {
 
 	public static void getMessages(User from, User to, Consumer<List<Message>> completed) {
+		User current = (User) Application.getInstance().get(Configuration.class).get("user");
 		BiConsumer<MessagesHttpAsyncMethodExecutor, HttpResponse> onComplete = (executor, response) -> {
 			switch (response.getStatusLine().getStatusCode()) {
 			case 200:
@@ -32,12 +33,14 @@ public class MessageService {
 		HttpGet get = new HttpService.GET()
 				.addHeader(new BasicHeader("Accept", "application/json"))
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/%s/messages/", Application.getInstance().get(Configuration.class).get("serverUrl"), from.getId()));
 		HttpService.request(get, MessagesHttpAsyncMethodExecutor.class, onComplete);
 	}
 	
 	public static void sendMessage(User from, User to, String message, Consumer<Message> completed, Runnable error) {
 		Configuration conf = Application.getInstance().get(Configuration.class);
+		User current = (User) conf.get("user");
 		Integer f = from.getId(), t = to.getId();
 		String m = message;
 		Object ua = new Object() {
@@ -61,6 +64,7 @@ public class MessageService {
 		HttpPost post = new HttpService.POST()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
 				.addHeader(new BasicHeader("Accept", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/messages/", (String) conf.get("serverUrl")), new PreSerializedJson<Object>(ua, "from", "to", "message"));
 		HttpService.request(post, MessageHttpAsyncMethodExecutor.class, onComplete);
 	}

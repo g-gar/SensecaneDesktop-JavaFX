@@ -2,17 +2,19 @@ package com.magc.sensecane;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Random;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
-import com.magc.sensecane.component.BuilderContainer;
 import com.magc.sensecane.controller.LoginController;
-import com.magc.sensecane.controller.component.MessageComponent;
 import com.magc.sensecane.framework.container.Container;
 import com.magc.sensecane.framework.javafx.JavaFxApplication;
 import com.magc.sensecane.framework.utils.LoadResource;
+import com.magc.sensecane.model.domain.User;
+import com.magc.sensecane.service.UserService;
 import com.magc.sensecane.util.ChangeView;
+import com.magc.sensecane.util.NifUtil;
 
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -49,13 +51,13 @@ public class Application extends JavaFxApplication {
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 		this.stage.getIcons().add(new Image("file:" + get(LoadResource.class).execute("img/Logo.png").toString()));
-		stage.setMaximized(true);
+//		stage.setMaximized(true);
 		primaryStage.setTitle("MAGC - Sensecane");
 		ChangeView.execute(LoginController.class);
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		Application app = Application.getInstance();
 		app.launch(args);
 	}

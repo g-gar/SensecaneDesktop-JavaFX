@@ -19,6 +19,7 @@ import com.magc.sensecane.model.httpexecutor.SensorsHttpAsyncMethodExecutor;
 public class SensorService {
 
 	public static void getSensors(User user, Consumer<List<Sensor>> completed) {
+		User current = (User) Application.getInstance().get(Configuration.class).get("user");
 		BiConsumer<SensorsHttpAsyncMethodExecutor, HttpResponse> onComplete = (executor, response) -> {
 			switch (response.getStatusLine().getStatusCode()) {
 			case 200:
@@ -30,11 +31,13 @@ public class SensorService {
 		};
 		HttpGet get = new HttpService.GET()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/%s/sensors/", Application.getInstance().get(Configuration.class).get("serverUrl"), user.getId()));
 		HttpService.request(get, SensorsHttpAsyncMethodExecutor.class, onComplete);
 	}
 
 	public static void getSensorData(Sensor sensor, Consumer<List<Measurement>> completed) {
+		User current = (User) Application.getInstance().get(Configuration.class).get("user");
 		BiConsumer<MeasurementsHttpAsyncMethodExecutor, HttpResponse> onComplete = (executor, response) -> {
 			switch (response.getStatusLine().getStatusCode()) {
 			case 200:
@@ -46,6 +49,7 @@ public class SensorService {
 		};
 		HttpGet get = new HttpService.GET()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/%s/sensors/%s/data/", Application.getInstance().get(Configuration.class).get("serverUrl"), sensor.getPatient(), sensor.getId()));
 		HttpService.request(get, MeasurementsHttpAsyncMethodExecutor.class, onComplete);
 	}

@@ -26,6 +26,7 @@
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 				<RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
 			</rowConstraints>
 			<children>
 				<VBox alignment="CENTER" prefHeight="20.0" prefWidth="180.0" GridPane.rowIndex="1">
@@ -95,7 +96,7 @@
 								<Font name="Century Gothic" size="12.0" />
 							</font>
 						</Label>
-						<Label fx:id="role" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
+						<Label fx:id="type" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
 							<font>
 								<Font name="Century Gothic" size="15.0" />
 							</font>
@@ -105,7 +106,24 @@
 						</Label>
 					</children>
 				</VBox>
-				<VBox alignment="CENTER" maxWidth="Infinity" prefHeight="20.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label text="Token:" textFill="#7f7777">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="token" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+				<VBox alignment="CENTER" maxWidth="Infinity" prefHeight="20.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
 					<children>
 						<JFXButton style="-fx-background-color: #7f7777;" text="Editar" textFill="#e7e3e3" />
 					</children>

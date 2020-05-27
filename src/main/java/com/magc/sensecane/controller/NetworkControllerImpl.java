@@ -47,11 +47,11 @@ public class NetworkControllerImpl extends AbstractController implements Network
 //			});
 //		}));
 		
-		table.setRowFactory(table -> new ModifiableTableRow<User>((TableRow<User> row, User user) -> {
-			Application.getInstance().execute(() -> {
-				System.out.println(user);
-			});
-		}));
+//		table.setRowFactory(table -> new ModifiableTableRow<User>((TableRow<User> row, User user) -> {
+//			Application.getInstance().execute(() -> {
+//				System.out.println(user);
+//			});
+//		}));
 		
 		table.getColumns()
 			.stream()
@@ -93,8 +93,6 @@ public class NetworkControllerImpl extends AbstractController implements Network
 				if (!users.isEmpty()) {
 					table.getItems().clear();
 					table.getItems().addAll(FXCollections.observableArrayList(users));
-				} else {
-					LoggerService.notifyError("No users available");
 				}
 			});
 		});

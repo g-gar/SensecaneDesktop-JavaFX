@@ -19,6 +19,8 @@ import com.magc.sensecane.model.httpexecutor.UsersHttpAsyncMethodExecutor;
 public class UserService {
 
 	public static void getUsers(Consumer<List<User>> completed) {
+		Configuration conf = Application.getInstance().get(Configuration.class);
+		User current = (User) conf.get("user");
 		BiConsumer<UsersHttpAsyncMethodExecutor, HttpResponse> onComplete = (executor, response) -> {
 			switch (response.getStatusLine().getStatusCode()) {
 			case 200:
@@ -30,11 +32,14 @@ public class UserService {
 		};
 		HttpGet get = new HttpService.GET()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/", (String) Application.getInstance().get(Configuration.class).get("serverUrl")));
 		HttpService.request(get, UsersHttpAsyncMethodExecutor.class, onComplete);
 	}
 
 	public static void getRelatedUsers(User user, Consumer<List<User>> completed) {
+		Configuration conf = Application.getInstance().get(Configuration.class);
+		User current = (User) conf.get("user");
 		BiConsumer<UsersHttpAsyncMethodExecutor, HttpResponse> onComplete = (executor, response) -> {
 			switch (response.getStatusLine().getStatusCode()) {
 			case 200:
@@ -46,6 +51,7 @@ public class UserService {
 		};
 		HttpGet get = new HttpService.GET()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/%s/related/", (String) Application.getInstance().get(Configuration.class).get("serverUrl"), user.getId()));
 		HttpService.request(get, UsersHttpAsyncMethodExecutor.class, onComplete);
 	}
@@ -56,6 +62,7 @@ public class UserService {
 	
 	public static void createUser(String username, String password, String dni, String firstName, String lastName, String type, Consumer<User> completed, Runnable error) {
 		Configuration conf = Application.getInstance().get(Configuration.class);
+		User current = (User) conf.get("user");
 		String u = username, p = password, d = dni, f = firstName, l = lastName, t = type;
 		Object ua = new Object() {
 			String username = u;
@@ -81,6 +88,7 @@ public class UserService {
 		};
 		HttpPost post = new HttpService.POST()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/", (String) conf.get("serverUrl")), data);
 		HttpService.request(post, UserHttpAsyncMethodExecutor.class, onComplete);
 	}
@@ -91,6 +99,7 @@ public class UserService {
 	
 	public static void updateUser(Integer id, String username, String password, String dni, String firstName, String lastName, String type, Consumer<User> completed, Runnable error) {
 		Configuration conf = Application.getInstance().get(Configuration.class);
+		User current = (User) conf.get("user");
 		Integer i = id;
 		String u = username, p = password, d = dni, f = firstName, l = lastName, t = type;
 		Object ua = new Object() {
@@ -118,6 +127,7 @@ public class UserService {
 		};
 		HttpPost post = new HttpService.POST()
 				.addHeader(new BasicHeader("Content-Type", "application/json"))
+				.addHeader(new BasicHeader("Authorization", String.format("Bearer %s", current.getToken())))
 				.build(String.format("%s/users/", (String) conf.get("serverUrl")), data);
 		HttpService.request(post, UserHttpAsyncMethodExecutor.class, onComplete);
 	}

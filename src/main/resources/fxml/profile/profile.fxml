@@ -12,39 +12,60 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="420.0" prefWidth="608.0" stylesheets="@profile.css" type="javafx.scene.layout.HBox" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="420.0" prefWidth="608.0"
+	stylesheets="@profile.css" type="javafx.scene.layout.HBox"
+	HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<GridPane fx:id="gridd" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+		<GridPane fx:id="gridd" alignment="CENTER"
+			maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" styleClass="background" GridPane.hgrow="ALWAYS"
+			GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
 			<columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
-				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0"
+					prefWidth="100.0" />
+				<ColumnConstraints halignment="CENTER"
+					hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0"
+					prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0"
+					vgrow="SOMETIMES" />
 				<RowConstraints />
 			</rowConstraints>
 			<children>
-				<VBox alignment="CENTER" prefHeight="20.0" prefWidth="180.0" GridPane.rowIndex="1">
+				<VBox alignment="CENTER" prefHeight="20.0" prefWidth="180.0"
+					GridPane.rowIndex="1">
 					<children>
-						<ImageView disable="true" fitHeight="188.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+						<ImageView disable="true" fitHeight="188.0"
+							fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../../img/medico.png" />
 							</image>
 						</ImageView>
 					</children>
 				</VBox>
-				<VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="SOMETIMES">
+				<VBox alignment="CENTER" GridPane.columnIndex="1"
+					GridPane.hgrow="ALWAYS" GridPane.vgrow="SOMETIMES">
 					<children>
 						<Label text="Nombre:" textFill="#7f7777">
 							<font>
 								<Font name="Century Gothic" size="12.0" />
 							</font>
 						</Label>
-						<Label fx:id="firstName" alignment="CENTER" prefHeight="20.0" prefWidth="148.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
+						<Label fx:id="firstName" alignment="CENTER"
+							prefHeight="20.0" prefWidth="148.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							textAlignment="CENTER" textFill="WHITE">
 							<font>
 								<Font name="Century Gothic" size="15.0" />
 							</font>
@@ -54,14 +75,18 @@
 						</Label>
 					</children>
 				</VBox>
-				<VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<VBox alignment="CENTER" GridPane.columnIndex="1"
+					GridPane.rowIndex="1">
 					<children>
 						<Label text="Apellidos:" textFill="#7f7777">
 							<font>
 								<Font name="Century Gothic" size="12.0" />
 							</font>
 						</Label>
-						<Label fx:id="lastName" alignment="CENTER" maxWidth="130.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
+						<Label fx:id="lastName" alignment="CENTER" maxWidth="130.0"
+							prefHeight="20.0" prefWidth="180.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							textAlignment="CENTER" textFill="WHITE">
 							<font>
 								<Font name="Century Gothic" size="15.0" />
 							</font>
@@ -71,31 +96,18 @@
 						</Label>
 					</children>
 				</VBox>
-            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label text="DNI:" textFill="#7f7777">
-                     <font>
-                        <Font name="Century Gothic" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dni" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Century Gothic" size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="5.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
-				<VBox alignment="CENTER" layoutX="10.0" layoutY="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+				<VBox alignment="CENTER" GridPane.columnIndex="1"
+					GridPane.rowIndex="2">
 					<children>
-						<Label text="Rol:" textFill="#7f7777">
+						<Label text="DNI:" textFill="#7f7777">
 							<font>
 								<Font name="Century Gothic" size="12.0" />
 							</font>
 						</Label>
-						<Label fx:id="role" alignment="CENTER" maxWidth="100.0" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #363635; -fx-background-radius: 10;" textAlignment="CENTER" textFill="WHITE">
+						<Label fx:id="dni" alignment="CENTER" maxWidth="100.0"
+							prefHeight="20.0" prefWidth="180.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							textAlignment="CENTER" textFill="WHITE">
 							<font>
 								<Font name="Century Gothic" size="15.0" />
 							</font>
@@ -105,9 +117,33 @@
 						</Label>
 					</children>
 				</VBox>
-				<VBox alignment="CENTER" maxWidth="Infinity" prefHeight="20.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+				<VBox alignment="CENTER" layoutX="10.0" layoutY="200.0"
+					GridPane.columnIndex="1" GridPane.rowIndex="3"
+					GridPane.vgrow="SOMETIMES">
 					<children>
-						<JFXButton style="-fx-background-color: #7f7777;" text="Editar" textFill="#e7e3e3" />
+						<Label text="Rol:" textFill="#7f7777">
+							<font>
+								<Font name="Century Gothic" size="12.0" />
+							</font>
+						</Label>
+						<Label fx:id="role" alignment="CENTER" maxWidth="100.0"
+							prefHeight="20.0" prefWidth="180.0"
+							style="-fx-background-color: #363635; -fx-background-radius: 10;"
+							textAlignment="CENTER" textFill="WHITE">
+							<font>
+								<Font name="Century Gothic" size="15.0" />
+							</font>
+							<VBox.margin>
+								<Insets left="10.0" right="10.0" top="5.0" />
+							</VBox.margin>
+						</Label>
+					</children>
+				</VBox>
+				<VBox alignment="CENTER" maxWidth="Infinity" prefHeight="20.0"
+					prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+					<children>
+						<JFXButton style="-fx-background-color: #7f7777;"
+							text="Editar" textFill="#e7e3e3" />
 					</children>
 				</VBox>
 			</children>

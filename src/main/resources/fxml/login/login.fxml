@@ -13,33 +13,41 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="839.0" style="-fx-background-color: #c6c6c6;" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-      <VBox>
+      <VBox HBox.hgrow="ALWAYS">
          <children>
-            <Pane prefHeight="593.0" prefWidth="1027.0">
+            <Pane prefHeight="593.0" prefWidth="1027.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane layoutX="21.0" layoutY="90.0">
+                  <VBox layoutX="21.0" layoutY="90.0">
                      <children>
-            						<Label layoutX="77.0" layoutY="33.0" prefHeight="54.0" prefWidth="211.0" text="SENSECANE" textFill="#615e5e">
-            							<font>
-            								<Font size="37.0" />
-            							</font>
-            						</Label>
-            						<ImageView fitHeight="117.0" fitWidth="135.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-            							<image>
-            								<Image url="@../../img/Logo.png" />
-            							</image>
-            						</ImageView>
-            						<Label layoutX="39.0" layoutY="108.0" prefHeight="66.0" prefWidth="287.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing &#10;elit. Vestibulum vitae vulputate nulla. Nulla ut lacus &#10;in leo feugiat ultricies. Aenean posuere, dui in" textAlignment="CENTER" textFill="#686262" />
+                        <Pane VBox.vgrow="ALWAYS">
+                           <children>
+                  						<Label layoutX="77.0" layoutY="33.0" prefHeight="54.0" prefWidth="211.0" text="SENSECANE" textFill="#615e5e">
+                  							<font>
+                  								<Font size="37.0" />
+                  							</font>
+                  						</Label>
+                  						<ImageView fitHeight="117.0" fitWidth="135.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+                  							<image>
+                  								<Image url="@../../img/Logo.png" />
+                  							</image>
+                  						</ImageView>
+                  						<Label layoutX="39.0" layoutY="108.0" prefHeight="66.0" prefWidth="287.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing &#10;elit. Vestibulum vitae vulputate nulla. Nulla ut lacus &#10;in leo feugiat ultricies. Aenean posuere, dui in" textAlignment="CENTER" textFill="#686262" />
+                           </children>
+                        </Pane>
                      </children>
-                  </Pane>
-                  <Pane layoutX="493.0" layoutY="125.0" prefHeight="284.0" prefWidth="276.0" style="-fx-background-color: #13304f;">
+                  </VBox>
+                  <VBox layoutX="493.0" layoutY="125.0">
                      <children>
-            						<JFXTextField fx:id="username" focusColor="WHITE" layoutX="31.0" layoutY="57.0" prefHeight="25.0" prefWidth="219.0" promptText="Usuario" style="-fx-background-color: #13304f;" styleClass="jfx-text-field" stylesheets="@login.css" unFocusColor="#e7e3e3" />
-            						<JFXPasswordField fx:id="password" focusColor="WHITE" layoutX="27.0" layoutY="123.0" prefHeight="25.0" prefWidth="219.0" promptText="Contraseña" style="-fx-background-color: #13304f;" styleClass="jfx-password-field" stylesheets="@login.css" unFocusColor="#e7e3e3" />
-            						<JFXButton layoutX="31.0" layoutY="196.0" onAction="#login" prefHeight="25.0" prefWidth="219.0" style="-fx-background-color: #7f7777;" text="Entrar" textFill="#e7e3e3" />
-            						<JFXButton layoutX="83.0" layoutY="244.0" onAction="#exit" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #7f7777;" text="Salir" textFill="#e7e3e3" />
+                        <Pane prefHeight="284.0" prefWidth="276.0" style="-fx-background-color: #13304f;">
+                           <children>
+                  						<JFXTextField fx:id="username" focusColor="WHITE" layoutX="31.0" layoutY="57.0" prefHeight="25.0" prefWidth="219.0" promptText="Usuario" styleClass="jfx-text-field" stylesheets="@login.css" unFocusColor="#e7e3e3" />
+                  						<JFXPasswordField fx:id="password" focusColor="WHITE" layoutX="27.0" layoutY="123.0" prefHeight="25.0" prefWidth="219.0" promptText="Contraseña" styleClass="jfx-password-field" stylesheets="@login.css" unFocusColor="#e7e3e3" />
+                  						<JFXButton layoutX="31.0" layoutY="196.0" onAction="#login" prefHeight="25.0" prefWidth="219.0" style="-fx-background-color: #7f7777;" text="Entrar" textFill="#e7e3e3" />
+                  						<JFXButton layoutX="83.0" layoutY="244.0" onAction="#exit" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #7f7777;" text="Salir" textFill="#e7e3e3" />
+                           </children>
+                        </Pane>
                      </children>
-                  </Pane>
+                  </VBox>
                </children>
             </Pane>
          </children>
